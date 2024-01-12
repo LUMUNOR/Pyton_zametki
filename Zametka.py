@@ -1,11 +1,13 @@
-class Zametka ():
-    def __init__(self, id, heading, body, date) -> None:
+import datetime
+
+class Zametka (object):
+    def __init__(self, id:int, heading:str, body:str):
         self._id = id # Идентификатор заметки
         self._heading = heading # Заголовок
         self._body = body # Тело заметки
-        self._date = date # Дата и время последнего изменения
+        self.__installtime() # Дата и время последнего изменения
 
-    @property
+    # @property
     def get_id(self):
         return self._id
     @property
@@ -17,4 +19,24 @@ class Zametka ():
     @property
     def get_date(self):
         return self._date
+    
+    # Перезапись тела
+    def overwriting(self,string:str):
+        self._body = string
+        self._installtime()
+
+    # Дописывание тела
+    def complement(self,string:str):
+        self._body = self._body + string
+        self.__installtime()
+    
+    # Вывод заметки в консоль
+    def __str__(self):
+        string = str(self._id)+'. '+self._heading.upper()+'\n'
+        string += self._body+'\n'
+        string += self._date+'\n'
+        return string
+
+    def __installtime(self):
+        self._date = datetime.datetime.today().strftime("%Y.%m.%d %H:%M")
     
