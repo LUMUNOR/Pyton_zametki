@@ -8,6 +8,9 @@ class Zametka (object):
         self.__installtime() # Дата и время последнего изменения
 
     # @property
+    def get_data(self):
+        return self._sortDate
+
     def get_id(self):
         return self._id
     @property
@@ -38,5 +41,6 @@ class Zametka (object):
         return string
 
     def __installtime(self):
-        self._date = datetime.datetime.today().strftime("%Y.%m.%d %H:%M")
+        self._sortDate = datetime.datetime.today()
+        self._date = self._sortData.strftime("%Y.%m.%d %H:%M")
     
