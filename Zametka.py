@@ -6,20 +6,26 @@ class Zametka (object):
         self._heading = heading # Заголовок
         self._body = body # Тело заметки
         self.__installtime() # Дата и время последнего изменения
+    
+    def __init__(self, id:str, heading:str, body:str,date:str):
+        self._id = int(id) # Идентификатор заметки
+        self._heading = heading # Заголовок
+        self._body = body # Тело заметки
+        self._date = date # Дата и время последнего изменения
+        self._data = datetime.datetime.strptime(date, '%Y.%m.%d %H:%M')
 
-    # @property
     def get_data(self):
         return self._sortDate
 
     def get_id(self):
         return self._id
-    @property
+    
     def get_heading(self):
         return self._heading
-    @property
+    
     def get_body(self):
         return self._body
-    @property
+    
     def get_date(self):
         return self._date
     

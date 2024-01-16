@@ -1,8 +1,10 @@
 import Zametka
+import SaveLoad
 
 class Book(object):
     def __init__(self) -> None:
         self._list = list()
+        self._saveLoad = SaveLoad.SeveLoad()
     
     #Добавление новой заметки в книгу
     def addNewZametka(self):
@@ -60,3 +62,9 @@ class Book(object):
    
     def getDate(zam):
         return zam.getDate()
+    
+    # Сохранение заметки в файл
+    def save(self):
+        print('Введите ID заметки которую хотите сохранить в файл:')
+        id = int(input())
+        self._saveLoad.seveZametka(self.__zamById(id))
