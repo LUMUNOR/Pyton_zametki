@@ -29,6 +29,9 @@ class Zametka (object):
     def get_date(self):
         return self._date
     
+    def set_id(self,id:int):
+        self._id = id
+    
     # Перезапись тела
     def overwriting(self,string:str):
         self._body = string
