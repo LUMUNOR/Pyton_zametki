@@ -24,14 +24,14 @@ class SeveLoad():
     
     def seveZametka(self,zametka:Zametka.Zametka):
         json = self._jsonFormat(zametka)
-        name = str(zametka.get_id)+'_'+ zametka.get_heading
+        name = str(zametka.get_id())+'_'+ zametka.get_heading()
         self._save(name,json)
 
     def _jsonFormat(self,zametka:Zametka.Zametka):
-        json = str(zametka.get_id)+';'
-        json += zametka.get_heading+';'
-        json += zametka.get_body+';'
-        json += zametka.get_date
+        json = str(zametka.get_id())+';'
+        json = str(json+zametka.get_heading()+';')
+        json = str(json+zametka.get_body()+';')
+        json = str(json+zametka.get_date())
         return json
     
     def loadZametka(self,nameFile:str):
@@ -41,5 +41,5 @@ class SeveLoad():
 
     def _zametkaFromJson(self,json:str):
         list = json.split(';')
-        zametka = Zametka(list[0],list[1],list[2],list[3])
+        zametka = Zametka.Zametkaload(list[0],list[1],list[2],list[3])
         return zametka

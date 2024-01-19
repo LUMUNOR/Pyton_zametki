@@ -31,23 +31,23 @@ class Book(object):
         return maxID+1
     
     # Возврат заметки по ID
-    def __zamById(self,id):
+    def __zamById(self,id:int):
         for zam in self._list:
-            if zam.get_id == id: return zam
+            if zam.get_id() == id: return zam
     
     # Вывод конкретной заметки по ID
     def printZam(self):
         print('Введлте ID заметки которую хотите вывести на экран:')
-        id = int(input)
+        id = int(input())
         print(self.__zamById(id))
     
     # Редактирование заметки по ID
     def editingZam(self):
         print('Введите ID заметки:')
-        id = int(input)
+        id = int(input())
         print('1.Дополнить заметку;')
         print('2.Переписать заметку.')
-        index = int(input)
+        index = int(input())
         match index:
             case 1:
                 self._complementZam(id)
@@ -56,15 +56,15 @@ class Book(object):
 
 
     def _complementZam(self,id):
-        print("Введите текст которым хотите дополнить заметку #"+id+":")
+        print("Введите текст которым хотите дополнить заметку #"+str(id)+":")
         string = input()
-        zam = self.__zamById(id)
+        zam:Zametka.Zametka = self.__zamById(id)
         zam.complement(string)
 
     def _overwritingZam(self,id):
-        print("Введите новое содержание заметки #"+id+":")
+        print("Введите новое содержание заметки #"+str(id)+":")
         string = input()
-        zam = self.__zamById(id)
+        zam:Zametka.Zametka = self.__zamById(id)
         zam.overwriting(string)
 
     # Удаление заметки по ID
@@ -75,11 +75,8 @@ class Book(object):
 
     # Сортировка списка заметок по дате
     def sortByDate(self):
-        self._list.sort(key = self.getDate)
-   
-    def getDate(zam):
-        return zam.getDate()
-    
+        self._list = sorted(self._list, key = lambda zam: zam.get_data())
+      
     # Сохранение заметки в файл
     def save(self):
         print('Введите ID заметки которую хотите сохранить в файл:')

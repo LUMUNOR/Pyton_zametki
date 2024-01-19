@@ -5,6 +5,7 @@ book = Book.Book()
 book.addNewZametka()
 
 def printMenu():
+    print('-------------------------------')
     print('Выберите дальнейшее действие:')
     print('1.Вывести все заметки;')
     print('2.Добавить новую заметку;')
@@ -14,12 +15,13 @@ def printMenu():
     print('6.Отсортировать заметки по дате;')
     print('7.Сохранить заметку в файл;')
     print('8.Загрузить заметку из файла;')
-    print('9.Завершить работу;')
+    print('9.Завершить работу.')
+    print('-------------------------------')
 
-
-while True:
+flag = True
+while flag:
     printMenu()
-    index = input()
+    index = int(input())
     match index:
         case 1:
             book.printBook()
@@ -39,4 +41,4 @@ while True:
             book.load()
         case 9:
             print('Досвидания!')
-            break
+            flag = False

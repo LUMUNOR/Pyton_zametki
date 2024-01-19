@@ -7,12 +7,12 @@ class Zametka (object):
         self._body = body # Тело заметки
         self.__installtime() # Дата и время последнего изменения
     
-    def __init__(self, id:str, heading:str, body:str,date:str):
-        self._id = int(id) # Идентификатор заметки
-        self._heading = heading # Заголовок
-        self._body = body # Тело заметки
-        self._date = date # Дата и время последнего изменения
-        self._data = datetime.datetime.strptime(date, '%Y.%m.%d %H:%M')
+    # def __init__(self, id:str, heading:str, body:str,date:str):
+    #     self._id = int(id) # Идентификатор заметки
+    #     self._heading = heading # Заголовок
+    #     self._body = body # Тело заметки
+    #     self._date = date # Дата и время последнего изменения
+    #     self._sortDate = datetime.datetime.strptime(date, '%Y.%m.%d %H:%M')
 
     def get_data(self):
         return self._sortDate
@@ -35,7 +35,7 @@ class Zametka (object):
     # Перезапись тела
     def overwriting(self,string:str):
         self._body = string
-        self._installtime()
+        self.__installtime()
 
     # Дописывание тела
     def complement(self,string:str):
@@ -51,5 +51,14 @@ class Zametka (object):
 
     def __installtime(self):
         self._sortDate = datetime.datetime.today()
-        self._date = self._sortData.strftime("%Y.%m.%d %H:%M")
+        self._date = self._sortDate.strftime("%Y.%m.%d %H:%M")
+
+class Zametkaload(Zametka):
+    
+    def __init__(self, id:str, heading:str, body:str,date:str):
+        self._id = int(id) # Идентификатор заметки
+        self._heading = heading # Заголовок
+        self._body = body # Тело заметки
+        self._date = date # Дата и время последнего изменения
+        self._sortDate = datetime.datetime.strptime(date, '%Y.%m.%d %H:%M')
     
